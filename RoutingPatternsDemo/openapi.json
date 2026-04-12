@@ -1,0 +1,154 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "RoutingPatternsDemo | v1",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/v1/products": {
+      "post": {
+        "tags": [
+          "Product Operations"
+        ],
+        "summary": "Creates a new product in the database.",
+        "operationId": "create-product",
+        "requestBody": {
+          "description": "Details of the product to be created.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProductArgs"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Product created successfully. URL to GET the newly created product is in the `Location` response header."
+          }
+        }
+      }
+    },
+    "/v1/products/{id}": {
+      "get": {
+        "tags": [
+          "Product Operations"
+        ],
+        "summary": "Fetches the product details for a given product id.",
+        "operationId": "get-product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the product to fetch from the system.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateProductArgs": {
+        "required": [
+          "name",
+          "description",
+          "price"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the product"
+          },
+          "description": {
+            "type": "string",
+            "description": "A description for the product"
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "URL of an image of the product"
+          },
+          "price": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "description": "Price per-unit of the product. Must be greater than or equal to zero.",
+            "format": "double"
+          }
+        },
+        "description": "Details of the product to be created"
+      },
+      "Product": {
+        "required": [
+          "id",
+          "name",
+          "description",
+          "price"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "id of the product",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the product"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the product"
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Image URL of the product"
+          },
+          "price": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "description": "Price per unit of the product",
+            "format": "double"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Product Operations"
+    }
+  ]
+}
