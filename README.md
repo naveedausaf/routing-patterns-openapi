@@ -2,7 +2,7 @@
 
 A sample ASP.NET minimal API project that accompanies two articles on ASP.NET minimal API development:
 
-1. **[Routing Patterns in ASP.NET Minimal APIs]()** — _link to be added_
+1. **[Routing Patterns in ASP.NET Minimal APIs](https://dev.to/nausaf/patterns-for-routing-in-aspnet-minimal-apis-1e8c)**
 2. **[OpenAPI Support in ASP.NET Minimal APIs]()** — _link to be added_
 
 ## Running the Project
