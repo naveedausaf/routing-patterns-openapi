@@ -1,50 +1,28 @@
-# Routing Patterns Demo
+# Routing Patterns and OpenAPI Demo
 
 A sample ASP.NET minimal API project that accompanies two articles on ASP.NET minimal API development:
 
 1. **[Routing Patterns in ASP.NET Minimal APIs]()** — _link to be added_
 2. **[OpenAPI Support in ASP.NET Minimal APIs]()** — _link to be added_
 
-The project demonstrates:
-
-- Organising minimal API handlers into `Handlers` classes with a `MapRoutesAndDescribe` method (routing pattern)
-- Generating typed `Created`/`Ok`/`NotFound` responses
-- Code-first OpenAPI schema generation using `Microsoft.AspNetCore.OpenApi`
-- Enriching the schema with XML documentation comments, `.WithSummary()`, `.WithTags()`, and `.WithName()`
-- Serving an interactive API browser using [Scalar](https://scalar.com/)
-
----
-
 ## Running the Project
-
-### Locally
-
-**Prerequisites:** [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
-
-```bash
-git clone <repo-url>
-cd routing-patterns-demo/RoutingPatternsDemo
-dotnet run
-```
-
-Then open `http://localhost:5237/scalar` in your browser to browse the interactive API documentation.
-
-Alternatively, open the solution in VS Code (with the C# Dev Kit extension) and press **F5**. The browser will open the Scalar UI automatically.
-
----
 
 ### In GitHub Codespaces
 
-You do not need to install anything. GitHub Codespaces provides a fully pre-configured cloud development environment in your browser or in VS Code.
+You do not need to install anything. 
+
+GitHub Codespaces provides a fully pre-configured cloud development environment in your browser and in local VS Code.
 
 **Steps:**
 
-1. Navigate to the repository on GitHub.
-2. Click the green **Code** button.
-3. Select the **Codespaces** tab and click **Create codespace on main**.
-4. Wait for the Codespace to build (typically under a minute).
-5. Once VS Code opens in the browser, press **F5** to run the project.
-6. A notification will appear asking whether to open the forwarded port in your browser — click **Open in Browser**. The Scalar UI will load.
+1. On the [GitHub page for this repository](https://github.com/naveedausaf/routing-patterns-openapi), click the green **Code** button:
+
+    ![alt text](.readmeimages/starting_codespace.png)
+
+2. From the dropdown, press the **Create codespace on main** button (you may need to select the **Codespaces** tab first).
+3. Wait for the Codespace to build (typically under a minute).
+4. Once VS Code has open in a browser tab, press **F5** to run the project.
+5. A notification will appear asking whether to open the forwarded port in your browser — click **Open in Browser**. The Scalar UI will load.
 
 #### Free Allowance and Cost
 
@@ -65,7 +43,30 @@ To ensure you are never billed for Codespaces beyond the free tier, go to **GitH
 
 > **Remember to stop your Codespace** when you are done. Codespaces count time while running, regardless of whether you are actively using them. Go to [github.com/codespaces](https://github.com/codespaces) to stop or delete your Codespaces.
 
----
+
+### Locally
+
+**Prerequisites:** [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
+
+Clone the repository:
+
+```bash
+cd <suitable dir>
+git clone https://github.com/naveedausaf/routing-patterns-openapi
+```
+
+To run the project:
+
+**Either,**
+
+```bash
+cd routing-patterns-demo/RoutingPatternsDemo
+dotnet run
+```
+Then open `http://localhost:5237/scalar` in your browser to browse the interactive API documentation. Here you also test the API.
+
+**Or,** open the solution in VS Code (with the C# Dev Kit extension installed) and press **F5**. The browser will open the Scalar UI automatically.
+
 
 ## Project Structure
 
