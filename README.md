@@ -7,7 +7,7 @@ A sample ASP.NET minimal API project that accompanies two articles on ASP.NET mi
 
 ## Running the Project
 
-You can either clone and run the project locally or run it on Github instantly as a GitHub Codespace (a cloud-based development environment that runs in your browser and in local VS Code). 
+You can either clone and run the project locally, or run it instantly on GitHub as **a GitHub Codespace** (a cloud-based development environment that runs in your browser and in local VS Code). 
 
 ### Locally
 
