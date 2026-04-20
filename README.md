@@ -7,7 +7,7 @@ A sample ASP.NET minimal API project that accompanies two articles on ASP.NET mi
 
 ## Project Structure
 
-```
+```text
 RoutingPatternsDemo/
 ├── Program.cs                          # Startup: DI registration, route mapping, OpenAPI & Scalar setup
 ├── Handlers/
@@ -22,7 +22,6 @@ RoutingPatternsDemo/
     └── launchSettings.json
 ```
 
----
 
 ## Key Endpoints
 
