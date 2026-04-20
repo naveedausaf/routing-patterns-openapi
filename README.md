@@ -54,17 +54,6 @@ GitHub Codespaces provides a fully pre-configured cloud development environment 
 
 The Scalar UI will load.
 
-> **Remember to stop your Codespace** when you are done:
-> 1. Click Codespaces button in the bottom left of VS Code in the browser tab:
->     ![alt text](.readmeimages/codespaces_button.png)
->
-> 2. Then select **Stop current codespace** from the menu that drops down at the top:
->    ![alt text](.readmeimages/stop_codespace.png)
->
-> **Better yet, delete the workspace** from **Code** button on the repo from which you launched the workspace. This would also remove storage associated with the workspace:
-> 
-> 1. Press **Code** button on the repo page then select the running codespace and press **Delete**:
->    ![alt text](.readmeimages/delete_codespace.png)
 
 
 
@@ -85,7 +74,17 @@ If you exceed the free allowance, usage is billed at approximately **$0.18 per h
 
 To ensure you are never billed for Codespaces beyond the free tier, go to **GitHub Settings → Billing and plans → Spending limits** and set the **Codespaces** spending limit to **$0**. With a $0 limit, Codespaces will stop rather than incur charges once your free allowance is exhausted.
 
-> **Remember to stop or delete your Codespace** when you are done. Codespaces count time while running, regardless of whether you are actively using them. Go to [github.com/codespaces](https://github.com/codespaces) to stop or delete your Codespaces.
+> **Remember to stop your Codespace** when you are done:
+> 1. Click Codespaces button in the bottom left of VS Code in the browser tab:
+>     ![alt text](.readmeimages/codespaces_button.png)
+>
+> 2. Then select **Stop current codespace** from the menu that drops down at the top:
+>    ![alt text](.readmeimages/stop_codespace.png)
+>
+> **Better yet, delete the workspace** from **Code** button on the repo from which you launched the workspace. This would also remove storage associated with the workspace:
+> 
+> 1. Press **Code** button on the repo page then select the running codespace and press **Delete**:
+>    ![alt text](.readmeimages/delete_codespace.png)
 
 
 
