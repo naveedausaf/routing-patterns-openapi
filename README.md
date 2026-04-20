@@ -32,6 +32,7 @@ RoutingPatternsDemo/
 | `GET` | `/openapi/v1.json` | Raw OpenAPI schema (JSON) |
 | `GET` | `/scalar` | Interactive Scalar API browser |
 
+---
 
 ## Running the Project
 
