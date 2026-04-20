@@ -5,6 +5,35 @@ A sample ASP.NET minimal API project that accompanies two articles on ASP.NET mi
 1. **[Routing Patterns in ASP.NET Minimal APIs](https://dev.to/nausaf/patterns-for-routing-in-aspnet-minimal-apis-1e8c)**
 2. **[OpenAPI Support in ASP.NET Minimal APIs]()** — _link to be added_
 
+## Project Structure
+
+```
+RoutingPatternsDemo/
+├── Program.cs                          # Startup: DI registration, route mapping, OpenAPI & Scalar setup
+├── Handlers/
+│   └── ProductHandlers.cs              # Endpoint handlers + MapRoutesAndDescribe
+├── ApplicationServices/
+│   ├── CreateProductArgs.cs            # Request body record (with XML docs for OpenAPI)
+│   ├── IProductService.cs
+│   └── ProductService.cs               # In-memory product store
+├── Domain/
+│   └── Product.cs                      # Domain model (with XML docs for OpenAPI)
+└── Properties/
+    └── launchSettings.json
+```
+
+---
+
+## Key Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| `POST` | `/v1/products/` | Create a new product |
+| `GET` | `/v1/products/{id}` | Fetch a product by GUID |
+| `GET` | `/openapi/v1.json` | Raw OpenAPI schema (JSON) |
+| `GET` | `/scalar` | Interactive Scalar API browser |
+
+
 ## Running the Project
 
 You can either clone and run the project locally, or run it instantly on GitHub as **a GitHub Codespace** (a cloud-based development environment that runs in your browser). 
@@ -88,31 +117,3 @@ To ensure you are never billed for Codespaces beyond the free tier, go to **GitH
 
 
 
-
-## Project Structure
-
-```
-RoutingPatternsDemo/
-├── Program.cs                          # Startup: DI registration, route mapping, OpenAPI & Scalar setup
-├── Handlers/
-│   └── ProductHandlers.cs              # Endpoint handlers + MapRoutesAndDescribe
-├── ApplicationServices/
-│   ├── CreateProductArgs.cs            # Request body record (with XML docs for OpenAPI)
-│   ├── IProductService.cs
-│   └── ProductService.cs               # In-memory product store
-├── Domain/
-│   └── Product.cs                      # Domain model (with XML docs for OpenAPI)
-└── Properties/
-    └── launchSettings.json
-```
-
----
-
-## Key Endpoints
-
-| Method | Path | Description |
-|--------|------|-------------|
-| `POST` | `/v1/products/` | Create a new product |
-| `GET` | `/v1/products/{id}` | Fetch a product by GUID |
-| `GET` | `/openapi/v1.json` | Raw OpenAPI schema (JSON) |
-| `GET` | `/scalar` | Interactive Scalar API browser |
