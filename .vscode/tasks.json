@@ -62,8 +62,12 @@
         {
             "label": "schemathesis",
             "type": "shell",
-            "command": "docker run --rm --network host schemathesis/schemathesis run http://localhost:5237/openapi/v1.json",
-            "dependsOn": "run"
+            "command": "docker run -t --rm --network container:$(cat /etc/hostname) schemathesis/schemathesis:4.17.0 run http://localhost:5237/openapi/v1.json",
+            "dependsOn": "run",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always"
+            }
         }
     ]
 }

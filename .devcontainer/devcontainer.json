@@ -6,23 +6,17 @@
   "image": "mcr.microsoft.com/devcontainers/dotnet:2-10.0-noble",
 
   "features": {
-    // Docker-in-Docker: runs a full Docker daemon inside the container so that
-    // the schemathesis VS Code task (docker run schemathesis/schemathesis ...)
-    // can pull and run containers without relying on a host Docker socket.
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {
-      "enableNonRootDocker": true,
-      "moby": true
-    }
+    // Docker-outside-of-Docker: mounts the host Docker socket into the container
+    // so that the schemathesis VS Code task (docker run schemathesis/schemathesis ...)
+    // can pull and run containers. Works on local Docker Desktop (macOS/Windows/WSL2)
+    // and GitHub Codespaces.
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
   },
-
-  // --privileged is required for Docker-in-Docker.
-  // It is fully supported by GitHub Codespaces (Linux VMs).
-  "runArgs": ["--privileged"],
 
   "hostRequirements": {
     "cpus": 2,
     "memory": "8gb"
-  }
+  },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [5000, 5001],
