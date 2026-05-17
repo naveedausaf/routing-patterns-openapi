@@ -62,7 +62,7 @@
         {
             "label": "schemathesis",
             "type": "shell",
-            "command": "docker run -t --rm --network container:$(cat /etc/hostname) schemathesis/schemathesis:4.17.0 run http://localhost:5237/openapi/v1.json",
+            "command": "mkdir -p ${workspaceFolder}/schemathesis-working-dir && rm -f ${workspaceFolder}/schemathesis-test-report/*.xml && schemathesis run --report junit --report-dir ${workspaceFolder}/schemathesis-test-report http://localhost:5237/openapi/v1.json ; junit2html ${workspaceFolder}/schemathesis-test-report/junit.xml ${workspaceFolder}/schemathesis-test-report/index.html",
             "dependsOn": "run",
             "problemMatcher": [],
             "presentation": {

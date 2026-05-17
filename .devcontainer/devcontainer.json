@@ -10,7 +10,8 @@
     // so that the schemathesis VS Code task (docker run schemathesis/schemathesis ...)
     // can pull and run containers. Works on local Docker Desktop (macOS/Windows/WSL2)
     // and GitHub Codespaces.
-    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    "ghcr.io/devcontainers/features/python:1": {}
   },
 
   "hostRequirements": {
@@ -27,9 +28,9 @@
   // }
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "dotnet restore RoutingPatternsDemo/RoutingPatternsDemo.csproj",
-  "postStartCommand": "dotnet restore RoutingPatternsDemo/RoutingPatternsDemo.csproj",
-
+  "postCreateCommand": "dotnet restore RoutingPatternsDemo/RoutingPatternsDemo.csproj && pip install schemathesis==4.17.0 junit2html==31.0.5",
+  "postStartCommand": "dotnet restore RoutingPatternsDemo/RoutingPatternsDemo.csproj"
+  
   // Configure tool-specific properties.
   // "customizations": {},
 
