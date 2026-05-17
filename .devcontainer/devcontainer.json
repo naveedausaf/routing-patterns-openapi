@@ -6,11 +6,6 @@
   "image": "mcr.microsoft.com/devcontainers/dotnet:2-10.0-noble",
 
   "features": {
-    // Docker-outside-of-Docker: mounts the host Docker socket into the container
-    // so that the schemathesis VS Code task (docker run schemathesis/schemathesis ...)
-    // can pull and run containers. Works on local Docker Desktop (macOS/Windows/WSL2)
-    // and GitHub Codespaces.
-    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
     "ghcr.io/devcontainers/features/python:1": {}
   },
 
