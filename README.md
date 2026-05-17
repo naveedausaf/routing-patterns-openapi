@@ -49,7 +49,7 @@ cd <suitable dir>
 git clone https://github.com/naveedausaf/routing-patterns-openapi
 ```
 
-Then install the Python pacakges required to run Schemathesis (make sure you have Python installed):
+Then install the Python pacakges required to run Schemathesis. Make sure you have Python installed. **Make sure to run these commands in a terminal with Admin privileges**:
 
 ```bash
 pip install schemathesis==4.17.0
