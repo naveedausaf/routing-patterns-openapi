@@ -480,3 +480,10 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Generated workspace cache files
+cache.*.json
+
+# schemathesis directories
+schemathesis-test-report/
+.hypothesis/
