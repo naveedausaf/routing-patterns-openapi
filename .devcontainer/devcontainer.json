@@ -29,7 +29,7 @@
 
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "dotnet restore RoutingPatternsDemo/RoutingPatternsDemo.csproj && pipx install schemathesis==4.17.0 && pipx install junit2html==31.0.5",
-  "postStartCommand": "dotnet restore RoutingPatternsDemo/RoutingPatternsDemo.csproj"
+  "postStartCommand": "dotnet restore RoutingPatternsDemo/RoutingPatternsDemo.csproj",
   
   // Configure tool-specific properties.
   "customizations": {
