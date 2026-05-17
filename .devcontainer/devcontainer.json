@@ -1,32 +1,43 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
 {
-	"name": "C# (.NET)",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/dotnet:2-10.0-noble",
+  "name": "C# (.NET)",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/dotnet:2-10.0-noble",
 
-	// Limit to 2 cores when running in GitHub Codespaces
-	"hostRequirements": {
-		"cpus": 2
-	}
+  "features": {
+    // Docker-in-Docker: runs a full Docker daemon inside the container so that
+    // the schemathesis VS Code task (docker run schemathesis/schemathesis ...)
+    // can pull and run containers without relying on a host Docker socket.
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "enableNonRootDocker": true,
+      "moby": true
+    }
+  },
 
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+  // --privileged is required for Docker-in-Docker.
+  // It is fully supported by GitHub Codespaces (Linux VMs).
+  "runArgs": ["--privileged"],
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [5000, 5001],
-	// "portsAttributes": {
-	//		"5001": {
-	//			"protocol": "https"
-	//		}
-	// }
+  "hostRequirements": {
+    "cpus": 2,
+    "memory": "8gb"
+  }
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "dotnet restore",
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [5000, 5001],
+  // "portsAttributes": {
+  //		"5001": {
+  //			"protocol": "https"
+  //		}
+  // }
 
-	// Configure tool-specific properties.
-	// "customizations": {},
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "dotnet restore",
 
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+  // Configure tool-specific properties.
+  // "customizations": {},
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
 }
