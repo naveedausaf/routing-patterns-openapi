@@ -1,14 +1,16 @@
+using System.Collections.Concurrent;
 using RoutingPatternsDemo.Domain;
 
 namespace RoutingPatternsDemo.ApplicationServices;
 
 public class ProductService : IProductService
 {
-    private static readonly List<Product> _products = new();
+    private static readonly ConcurrentDictionary<Guid, Product> _products = new();
 
     public Task<Product?> GetProductById(Guid id)
     {
-        return Task.FromResult(_products.FirstOrDefault(p => p.Id == id));
+        _products.TryGetValue(id, out var product);
+        return Task.FromResult(product);
     }
 
     public Task<Guid> CreateProduct(CreateProductArgs createProductArgs)
@@ -21,7 +23,7 @@ public class ProductService : IProductService
             ImageUrl = createProductArgs.ImageUrl,
             Price = createProductArgs.Price
         };
-        _products.Add(product);
+        _products[product.Id] = product;
         return Task.FromResult(product.Id);
     }
 }

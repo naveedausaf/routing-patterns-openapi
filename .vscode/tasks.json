@@ -62,7 +62,7 @@
         {
             "label": "schemathesis",
             "type": "shell",
-            "command": "mkdir -p ${workspaceFolder}/schemathesis-working-dir && rm -f ${workspaceFolder}/schemathesis-test-report/*.xml && schemathesis run --report junit --report-dir ${workspaceFolder}/schemathesis-test-report http://localhost:5237/openapi/v1.json ; junit2html ${workspaceFolder}/schemathesis-test-report/junit.xml ${workspaceFolder}/schemathesis-test-report/index.html",
+            "command": "rm -rf ${workspaceFolder}/.hypothesis && rm -f ${workspaceFolder}/schemathesis-test-report/*.xml && schemathesis run --report junit --report-dir ${workspaceFolder}/schemathesis-test-report -n 50 http://localhost:5237/openapi/v1.json; ST_EXIT=$?; junit2html ${workspaceFolder}/schemathesis-test-report/junit-*.xml ${workspaceFolder}/schemathesis-test-report/report.html; exit $ST_EXIT",
             "dependsOn": "run",
             "problemMatcher": [],
             "presentation": {

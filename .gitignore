@@ -484,6 +484,6 @@ $RECYCLE.BIN/
 # Generated workspace cache files
 cache.*.json
 
-# schemathesis report- and working directories
+# schemathesis directories
 schemathesis-test-report/
-schemathesis-working-dir/
+.hypothesis/
