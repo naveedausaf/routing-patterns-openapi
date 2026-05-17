@@ -49,6 +49,13 @@ cd <suitable dir>
 git clone https://github.com/naveedausaf/routing-patterns-openapi
 ```
 
+Then install the Python pacakges required to run Schemathesis (make sure you have Python installed):
+
+```bash
+pip install schemathesis==4.17.0
+pip install junit2html==31.0.5
+```
+
 To run the project:
 
 **Either,**
@@ -66,9 +73,9 @@ Then open `http://localhost:5237/scalar` in your browser to browse the interacti
 
 You do not need to install anything. 
 
-GitHub Codespaces provides a fully pre-configured cloud development environment in your browser and in local VS Code.
+GitHub Codespaces provides a fully pre-configured cloud development environment in your browser and locally in VS Code.
 
-**Steps:**
+**Steps to open a GitHub Codespace:**
 
 1. On the [GitHub page for this repository](https://github.com/naveedausaf/routing-patterns-openapi), click the green **Code** button:
 
