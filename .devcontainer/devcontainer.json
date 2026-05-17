@@ -8,10 +8,28 @@
 	// Limit to 2 cores when running in GitHub Codespaces
 	"hostRequirements": {
 		"cpus": 2
-	}
+	},
+
+	// --privileged is required for Docker-in-Docker.
+	// It is fully supported by GitHub Codespaces (Linux VMs).
+	// In local VS Code dev containers Docker Desktop must also be configured to allow privileged containers.
+	"runArgs": ["--privileged"],
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	"features": {
+		// Docker-in-Docker: runs a full Docker daemon inside the container.
+		// Requires --privileged (above). The feature handles daemon startup automatically
+		// via its entrypoint (/usr/local/share/docker-init.sh).
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"enableNonRootDocker": true,
+			"moby": true
+		},
+		// Node.js: installs node/npm/npx and sets containerEnv so the bin directory
+		// is in PATH for ALL shell types, including the non-interactive shells that
+		// VS Code uses to run tasks. Without this, nvm-based node is only visible
+		// in interactive login shells and npx is not found in tasks.
+		"ghcr.io/devcontainers/features/node:1": {}
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [5000, 5001],
@@ -21,11 +39,26 @@
 	//		}
 	// }
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "dotnet restore",
+	// erofs-utils provides mkfs.erofs, which Docker's bundled containerd 2.x requires
+	// to load the io.containerd.transfer.v1.local plugin. Without it the Docker daemon
+	// never becomes ready. We install it here (once, with apt-get update) so the
+	// package is present when the Docker daemon is started below.
+	//
+	// postStartCommand runs on EVERY container start (not just initial creation), so
+	// this is the right place for daemon startup: on the very first start erofs-utils
+	// won't be installed yet (the entrypoint's docker-init.sh will have already failed),
+	// so we install it then restart the daemon. On subsequent starts the package is
+	// already present, docker info succeeds immediately, and nothing extra runs.
+	"postStartCommand": "docker info > /dev/null 2>&1 || { which mkfs.erofs > /dev/null 2>&1 || (sudo apt-get update -qq && sudo apt-get install -y erofs-utils); sudo /usr/local/share/docker-init.sh; }",
 
 	// Configure tool-specific properties.
-	// "customizations": {},
+	"customizations": {
+		"vscode": {
+			// Live Server lets you right-click any HTML file and choose "Open with Live Server"
+			// to view it instantly in a browser tab — useful for the schemathesis report.html.
+			"extensions": ["ritwickdey.LiveServer"]
+		}
+	}
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
