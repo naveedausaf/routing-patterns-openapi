@@ -56,7 +56,7 @@
 		"vscode": {
 			// Live Server lets you right-click any HTML file and choose "Open with Live Server"
 			// to view it instantly in a browser tab — useful for the schemathesis report.html.
-			"extensions": ["ritwickdey.LiveServer"]
+			"extensions": ["ritwickdey.LiveServer", "google.geminicodeassist"]
 		}
 	}
 

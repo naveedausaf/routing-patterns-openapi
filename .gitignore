@@ -65,6 +65,9 @@ project.lock.json
 project.fragment.lock.json
 artifacts/
 
+# .NET SDK run-file discovery cache
+dotnet/runfile-discovery/**/cache.staging.json
+
 # Tye
 .tye/
 
