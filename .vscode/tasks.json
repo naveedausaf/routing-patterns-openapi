@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/RoutingPatternsDemo/RoutingPatternsDemo.csproj",
+                "${workspaceFolder}/RoutingPatternsDemo.slnx",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
