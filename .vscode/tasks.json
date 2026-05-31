@@ -36,6 +36,85 @@
                 "${workspaceFolder}/RoutingPatternsDemo/RoutingPatternsDemo.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "run",
+                "--project",
+                "${workspaceFolder}/RoutingPatternsDemo/RoutingPatternsDemo.csproj",
+                "--launch-profile",
+                "http"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "^.*Now listening on.*$",
+                    "endsPattern": "^.*Application started.*$"
+                }
+            }
+        },
+        // -n 50 caps the number of generated test cases per API operation.
+        // This balances schema coverage against run time; remove or increase for exhaustive runs.
+        {
+            "label": "schemathesis",
+            "type": "shell",
+            "dependsOn": ["run"],
+            "command": "rm -rf \"${workspaceFolder}/schemathesis-test-report\" \"$  {workspaceFolder}/schemathesis-coverage-report\" && mkdir -p \"${workspaceFolder}/schemathesis-test-report\" \"${workspaceFolder}/schemathesis-coverage-report\" && docker run --rm --network=host -v \"${workspaceFolder}/schemathesis-test-report:/schemathesis-test-report\" -v \"${workspaceFolder}/schemathesis-coverage-report:/schemathesis-coverage-report\" -w /schemathesis-coverage-report schemathesis/schemathesis:4.17.0 run http://localhost:5237/openapi/v1.json --checks all --wait-for-schema 60 -n 50 --report junit --report-dir /schemathesis-test-report; DOCKER_EXIT=$?; ls \"${workspaceFolder}/schemathesis-test-report/\"junit-*.xml > /dev/null 2>&1 && npx --yes xunit-viewer --results \"${workspaceFolder}/schemathesis-test-report\" --output \"${workspaceFolder}/schemathesis-test-report/report.html\"; exit $DOCKER_EXIT",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "problemMatcher": [
+                {
+                // Matches the per-check failure line that schemathesis prints:
+                //   FAILED - not_a_server_error
+                // Docker Compose prefixes the service name, so the pattern
+                // tolerates an optional "<service>  | " prefix.
+                //
+                // VS Code requires either a file-oriented matcher or a line/location
+                // capture. Schemathesis emits no source file, so this matcher uses a
+                // dummy location capture to satisfy the schema and still show the
+                // failure message.
+                "owner": "schemathesis",
+                "severity": "error",
+                "pattern": [
+                    {
+                    "regexp": "^(?:.*\\|\\s*)?(FAILED)\\s+-\\s+(.+)$",
+                    "file": 1,
+                    "location": 1,
+                    "message": 2
+                    }
+                ]
+                },
+                {
+                // Matches the overall summary line that schemathesis prints when
+                // one or more checks failed, e.g.:
+                //   1 passed, 2 failed in 4.23s
+                // The entire summary is captured as both the location and message.
+                "owner": "schemathesis-summary",
+                "severity": "warning",
+                "pattern": [
+                    {
+                    "regexp": "^(?:.*\\|\\s*)?(\\d+ (?:passed|failed)[^\\r\\n]*)$",
+                    "file": 1,
+                    "location": 1,
+                    "message": 1
+                    }
+                ]
+                }
+            ]
         }
     ]
 }
