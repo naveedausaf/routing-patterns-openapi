@@ -4,7 +4,7 @@ using System.Text.Json;
 namespace RoutingPatternsDemo.UnitTests;
 
 
-public class StoredOpenAPIDocumentTests(HandlerTestApplicationFactory appFactory) : IClassFixture<HandlerTestApplicationFactory>
+public class OpenAPIDocumentTests(HandlerTestApplicationFactory appFactory) : IClassFixture<HandlerTestApplicationFactory>
 {
     /// <summary>
     /// Test for the integrity of the PR review of the build-time-generated OpenAPI document that is (or should have been) checked in to the source branch of a pull request. 
@@ -28,17 +28,17 @@ public class StoredOpenAPIDocumentTests(HandlerTestApplicationFactory appFactory
         // Locate the API project folder relative to the test assembly's location.
         // Test assembly runs from: <repoRoot>/RoutingPatternsDemo.UnitTests/bin/<Config>/<framework moniker>/
         // API project folder is:   <repoRoot>/RoutingPatternsDemo/
-        var testAssemblyDir = Path.GetDirectoryName(typeof(StoredOpenAPIDocumentTests).Assembly.Location)!;
+        var testAssemblyDir = Path.GetDirectoryName(typeof(OpenAPIDocumentTests).Assembly.Location)!;
         var apiProjectDir = Path.GetFullPath(Path.Combine(testAssemblyDir, "..", "..", "..", "..", "RoutingPatternsDemo"));
         var storedOpenApiDocumentPath = Path.Combine(apiProjectDir, "openapi.json");
 
         // ACT
-        var storedOpenApiDocumentJson = await File.ReadAllTextAsync(storedOpenApiDocumentPath);
+        var storedOpenApiDocumentJson = await File.ReadAllTextAsync(storedOpenApiDocumentPath, TestContext.Current.CancellationToken);
 
         using var client = appFactory.CreateClient();
-        var response = await client.GetAsync("/openapi/v1.json");
+        var response = await client.GetAsync("/openapi/v1.json", TestContext.Current.CancellationToken);
         response.EnsureSuccessStatusCode();
-        var generatedOpenApiDocumentJson = await response.Content.ReadAsStringAsync();
+        var generatedOpenApiDocumentJson = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken);
 
         // ASSERT        
         var storedNormalised = NormalizeOpenApiDocument(storedOpenApiDocumentJson);
