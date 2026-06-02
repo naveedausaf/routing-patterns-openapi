@@ -35,16 +35,6 @@ jobs:
       - name: Test
         run: dotnet test RoutingPatternsDemo.UnitTests/RoutingPatternsDemo.UnitTests.csproj --configuration Release --no-build --logger "junit;LogFileName=test-results.xml" --results-directory ./TestResults
 
-      - name: Debug test result files
-        if: always()
-        run: |
-          echo "Looking for test result files under TestResults"
-          if [ -d "TestResults" ]; then
-            find TestResults -type f | sort
-          else
-            echo "TestResults directory not found"
-          fi
-
       - name: Publish test report to PR Checks
         if: always()
         uses: dorny/test-reporter@a43b3a5f7366b97d083190328d2c652e1a8b6aa2 # v3.0.0
