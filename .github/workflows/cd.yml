@@ -1,0 +1,16 @@
+name: CD
+concurrency:
+  group: cd-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+  checks: write
+on:
+  push:
+    branches:
+      - main
+jobs:
+  test:
+    uses: ./.github/workflows/api-tests.yml
+    with:
+      report-name: API Tests (main)
