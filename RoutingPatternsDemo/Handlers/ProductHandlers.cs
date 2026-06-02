@@ -11,7 +11,7 @@ public static class ProductHandlers
     // This nested class contains names of handlers in this Handlers class as string constants. These names are attached to handlers when registering routes using `.WithName` and again used for generating generating links to these handlers in other handlers such as HandleCreateProduct which creates a Product then returns a GET route for the created product in its response.
     public static class HandlerNames
     {
-        public const string GetProduct = "FETCH-PRODUCT";
+        public const string GetProduct = "get-product";
         public const string CreateProduct = "create-product";
 
     }
