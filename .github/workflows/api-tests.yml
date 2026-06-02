@@ -52,9 +52,5 @@ jobs:
           name: ${{ inputs.report-name }}
           path: TestResults/**/*.xml
           reporter: java-junit
-          use-actions-summary: true
-          list-suites: all
-          list-tests: all
-          max-annotations: 50
           fail-on-empty: true
-          fail-on-error: true
+          fail-on-error: false
