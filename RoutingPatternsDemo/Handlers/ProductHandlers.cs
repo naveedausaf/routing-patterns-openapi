@@ -30,11 +30,11 @@ public static class ProductHandlers
         // Open API Tag "Product Operations" is added to the group of handlers in this Handlers class under Route prefix `/products`
         var routeBuilder = baseRouteGroup.MapGroup(RoutePrefix).WithTags("Product Operations");
 
-        routeBuilder.MapPost("/", HandleCreateProduct).WithName(HandlerNames.CreateProduct).WithSummary("Creates a new product in the system.");
+        routeBuilder.MapPost("/", HandleCreateProduct).WithName(HandlerNames.CreateProduct);
 
         // PATTERN 3:
         // Not decalring route constraints like {id:guid} in the route template, and instead relying on model binding and OpenAPI metadata to validate the incoming request and return a 400 Bad Request if the id is not a valid guid.
-        routeBuilder.MapGet("/{id}", HandleGetProduct).WithName(HandlerNames.GetProduct).WithSummary("Fetches the product details for a given product id.");
+        routeBuilder.MapGet("/{id}", HandleGetProduct).WithName(HandlerNames.GetProduct);
         // END OF PATTERN 3
 
         return routeBuilder;
